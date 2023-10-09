@@ -13,4 +13,4 @@
 - Webpack Npm Babel БЭМ.
 
 # Ссылка на сайт
-https://marinagromova.github.io/mesto/
+https://marinagromova.github.io/mesto-react/
