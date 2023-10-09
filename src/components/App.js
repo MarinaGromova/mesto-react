@@ -6,7 +6,7 @@ import PopupWithForm from "./PopupWithForm";
 import PopupProfileAdd from "./PopupProfileAdd";
 import UserAvatarPopup from "./UserAvatarPopup";
 import PopupProfileEdit from "./PopupProfileEdit";
-import PopupImage from "./PopupImage";
+import ImagePopup from "./ImagePopup";
 import "../index.css";
 
 function App() {
@@ -65,7 +65,7 @@ function App() {
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
         />
-        <PopupImage card={selectedCard} onClose={closeAllPopups} />
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </div>
     </div>
   );
