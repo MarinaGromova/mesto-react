@@ -1,10 +1,34 @@
+import React, { useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
-export default function PopupProfileAdd({ isOpen, onClose }) {
+export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+  const [name, setName] = useState("");
+  const [link, setlink] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onAddPlace({ name, link });
+  }
+
+  function handlePlaceName(e) {
+    setName(e.target.value);
+  }
+
+  function handlePlaceLink(e) {
+    setlink(e.target.value);
+  }
+
+  //сброс текста при открытии
+  React.useEffect(() => {
+    setName("");
+    setlink("");
+  }, [isOpen]);
+
   return (
     <PopupWithForm
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={handleSubmit}
       name="profile"
       title="Новое место"
       buttonText="Создать"
@@ -18,6 +42,8 @@ export default function PopupProfileAdd({ isOpen, onClose }) {
         minLength="2"
         maxLength="30"
         required=""
+        value={name || ""}
+        onChange={handlePlaceName}
       />
       <span className="popup__input-error input-new-error" />
       <input
@@ -27,6 +53,8 @@ export default function PopupProfileAdd({ isOpen, onClose }) {
         placeholder="Ссылка на картинку"
         type="url"
         required=""
+        value={link || ""}
+        onChange={handlePlaceLink}
       />
       <span className="popup__input-error input-link-error" />
     </PopupWithForm>
