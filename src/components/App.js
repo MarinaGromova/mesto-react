@@ -15,7 +15,7 @@ function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
+  // const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [renderLoading, setrenderLoading] = useState(false);
@@ -44,11 +44,11 @@ function App() {
     setSelectedCard({ name: card.name, link: card.link });
   };
 
-  const handleCardDelete = (card) => {
+  const handleCardDelete = (cardId) => {
     api
-      .deleteCard(card._id)
+      .deleteCard(cardId)
       .then(() => {
-        setCards(cards.filter((card) => card._id !== card._id));
+        setCards(cards.filter((c) => c._id !== cardId));
       })
       .catch((err) => console.log(`Ошибка: ${err}`))
       .finally(() => setrenderLoading(false));
@@ -118,7 +118,7 @@ function App() {
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
     setSelectedCard(false);
-    setIsDeletePopupOpen(false);
+    // setIsDeletePopupOpen(false);
   }
 
   return (
@@ -143,8 +143,8 @@ function App() {
             renderLoading={renderLoading ? "Сохранение..." : "Сохранить"}
           />
           <PopupWithForm
-            isOpen={isDeletePopupOpen}
-            onClose={closeAllPopups}
+            // isOpen={isDeletePopupOpen}
+            // onClose={closeAllPopups}
             title={"Вы уверены?"}
             buttonText={"Да"}
             name={"delete"}
